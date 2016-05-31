@@ -1,17 +1,18 @@
 import React, { PropTypes, Component } from 'react'
+import Comments from './Comments'
 
 class Article extends Component {
 
     state = {
         isOpen: false
-    }
+    };
 
     render() {
-        const { article } = this.props
-        const { isOpen } = this.state
+        const { article } = this.props;
+        const { isOpen } = this.state;
 
-        if (!article) return <h3>No article</h3>
-        const body = isOpen ? <section>{article.text}</section> : null
+        if (!article) return <h3>No article</h3>;
+        const body = isOpen ? <section>{article.text} <Comments {...this.props} /></section> : null;
 
         return (
             <div>
@@ -25,7 +26,8 @@ class Article extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
+    };
+    
 }
 
 
@@ -50,6 +52,6 @@ Article.propTypes = {
         id: PropTypes.string.isRequired
     }),
     options: PropTypes.object
-}
+};
 
 export default Article
