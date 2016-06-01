@@ -15,6 +15,7 @@ class Comments extends Component {
   render() {
     const { comments=[] } = this.props.article;
     const { isOpen } = this.state;
+    //все хорошо, но Comment лучше вразу вынести в отдельный компонент
     const commentList = isOpen ? comments.map((item) => <li key={item.id}><p>{item.name}</p>{item.text}</li> ) : null;
     let btn;
 
