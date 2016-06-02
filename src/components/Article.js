@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import CommentList from './CommentListOld'
+import CommentList from './CommentList'
 
 class Article extends Component {
     render() {

@@ -1,20 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
+import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
     static propTypes = {
-        comments: PropTypes.array
+        comments: PropTypes.array,
+        //from toggleOpen decorator
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     };
-
-    constructor(props) {
-        super()
-
-        this.state = {
-            isOpen: false
-        };
-    }
-
-
     render() {
         return (
             <div>
@@ -25,24 +19,18 @@ class CommentList extends Component {
     }
 
     getToggler() {
-        const text = this.state.isOpen ? 'hide comments' : 'show comments'
-        return <a href = "#" onClick = {this.toggleOpen}>{text}</a>
-    }
-
-    toggleOpen = (ev) => {
-        ev.preventDefault()
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
+        const { isOpen, toggleOpen } = this.props
+        const text = isOpen ? 'hide comments' : 'show comments'
+        return <a href = "#" onClick = {toggleOpen}>{text}</a>
     }
 
     getList() {
-        if (!this.state.isOpen) return null
-        const { comments } = this.props
+        const { comments, isOpen } = this.props
+        if (!isOpen) return null
         if (!comments || !comments.length) return <h3>No comments yet</h3>
         const items = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
         return <ul>{items}</ul>
     }
 }
 
-export default CommentList
+export default toggleOpen(CommentList)
