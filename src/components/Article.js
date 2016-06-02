@@ -9,10 +9,7 @@ class Article extends Component {
 
     render() {
         const { article } = this.props
-        const { isOpen } = this.state
-
         if (!article) return <h3>No article</h3>
-        const body = isOpen ? <section>{article.text}</section> : null
 
         return (
             <div>
