@@ -1,15 +1,11 @@
 import React, { createClass } from 'react'
+import Comment from './Comment'
+import toggleOpen from '../mixins/toggleOpen'
 
-const CommentLostOld = createClass({
+const CommentListOld = createClass({
+    mixins: [toggleOpen],
     propTypes: {
 
-    },
-
-    getInitialState() {
-        //this.props
-        return {
-            isOpen: false
-        }
     },
 
     render() {
@@ -26,13 +22,6 @@ const CommentLostOld = createClass({
         return <a href = "#" onClick = {this.toggleOpen}>{text}</a>
     },
 
-    toggleOpen(ev) {
-        ev.preventDefault()
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    },
-
     getList() {
         if (!this.state.isOpen) return null
         const { comments } = this.props
@@ -41,3 +30,5 @@ const CommentLostOld = createClass({
         return <ul>{items}</ul>
     }
 })
+
+export default CommentListOld
