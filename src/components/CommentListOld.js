@@ -1,19 +1,16 @@
-import React, { Component, PropTypes } from 'react'
-import Comment from './Comment'
+import React, { createClass } from 'react'
 
-class CommentList extends Component {
-    static propTypes = {
-        comments: PropTypes.array
-    };
+const CommentLostOld = createClass({
+    propTypes: {
 
-    constructor(props) {
-        super()
+    },
 
-        this.state = {
+    getInitialState() {
+        //this.props
+        return {
             isOpen: false
-        };
-    }
-
+        }
+    },
 
     render() {
         return (
@@ -22,19 +19,19 @@ class CommentList extends Component {
                 {this.getList()}
             </div>
         )
-    }
+    },
 
     getToggler() {
         const text = this.state.isOpen ? 'hide comments' : 'show comments'
         return <a href = "#" onClick = {this.toggleOpen}>{text}</a>
-    }
+    },
 
-    toggleOpen = (ev) => {
+    toggleOpen(ev) {
         ev.preventDefault()
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
+    },
 
     getList() {
         if (!this.state.isOpen) return null
@@ -43,6 +40,4 @@ class CommentList extends Component {
         const items = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
         return <ul>{items}</ul>
     }
-}
-
-export default CommentList
+})
