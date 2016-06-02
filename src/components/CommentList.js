@@ -3,6 +3,10 @@ import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
+    static defaultProps = {
+
+    }
+
     static propTypes = {
         comments: PropTypes.array,
         //from toggleOpen decorator
@@ -17,6 +21,15 @@ class CommentList extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        console.log('I am mounted')
+    }
+
+    componentWillUpdate(nextProps) {
+        console.log(this.props.isOpen, ' changes to ', nextProps.isOpen)
+    }
+
 
     getToggler() {
         const { isOpen, toggleOpen } = this.props
