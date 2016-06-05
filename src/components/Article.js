@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import Comments from './Comments'
+import CommentList from './CommentList'
 
 class Article extends Component {
 
@@ -8,11 +8,11 @@ class Article extends Component {
     };
 
     render() {
-        const { article } = this.props;
+        const { article} = this.props;
         const { isOpen } = this.state;
 
         if (!article) return <h3>No article</h3>;
-        const body = isOpen ? <section>{article.text} <Comments {...this.props} /></section> : null;
+        const body = isOpen ? <section>{article.text} <CommentList comments = {article.comments} /></section> : null;
 
         return (
             <div>
