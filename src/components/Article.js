@@ -3,8 +3,8 @@ import CommentList from './CommentList'
 
 class Article extends Component {
     render() {
-        const { article, openArticle } = this.props
-        if (!article) return <h3>No article</h3>
+        const { article, openArticle } = this.props;
+        if (!article) return <h3>No article</h3>;
 
         return (
             <div>
@@ -15,8 +15,8 @@ class Article extends Component {
     }
 
     getBody() {
-        const { article, isOpen } = this.props
-        if (!isOpen) return null
+        const { article, isOpen } = this.props;
+        if (!isOpen) return null;
         return (
             <section>
                 {article.text}
@@ -50,6 +50,6 @@ Article.propTypes = {
     isOpen: PropTypes.bool,
     openArticle: PropTypes.func,
     options: PropTypes.object
-}
+};
 
 export default Article
