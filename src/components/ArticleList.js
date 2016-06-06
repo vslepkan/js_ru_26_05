@@ -3,8 +3,15 @@ import { findDOMNode } from 'react-dom'
 import Article from './Article'
 import Chart from './Chart'
 import oneOpen from '../decorators/oneOpen'
+import Select from 'react-select'
+
+import 'react-select/dist/react-select.css'
 
 class ArticleList extends Component {
+
+    state = {
+        selected: null
+    }
 
     componentDidMount() {
         console.log('---', 2)
@@ -21,14 +28,31 @@ class ArticleList extends Component {
             />
         </li>)
 
+        const options = articles.map((article) => ({
+            label: article.title,
+            value: article.id
+        }))
+
         return (
             <div>
                 <ul>
                     {articleItems}
                 </ul>
                 <Chart ref="chart" />
+                <Select
+                    options = {options}
+                    onChange = {this.handleChange}
+                    value= {this.state.selected}
+                    multi = {true}
+                />
             </div>
         )
+    }
+
+    handleChange = (selected) => {
+        this.setState({
+            selected
+        })
     }
 }
 
