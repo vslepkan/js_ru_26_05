@@ -18,6 +18,7 @@ class Article extends Component {
         return (
             <div>
                 <h3 onClick = {openArticle}>{article.title}</h3>
+                <h6>Added {new Date(article.date).toDateString()}</h6>
                 {this.getBody()}
             </div>
         )
