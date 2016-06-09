@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import CommentList from './CommentList'
+import { deleteArticle } from '../AC/articles'
 
 class Article extends Component {
 
@@ -17,7 +18,7 @@ class Article extends Component {
 
         return (
             <div>
-                <h3 onClick = {openArticle}>{article.title} <a href="#" onClick = {this.deleteArticle}>delete article</a></h3>
+                <h3 onClick = {openArticle}>{article.title} <a href="#" onClick = {this.handleDeleteArticle}>delete article</a></h3>
                 <h6>Added {new Date(article.date).toDateString()}</h6>
                 {this.getBody()}
             </div>
@@ -35,10 +36,10 @@ class Article extends Component {
         )
     }
 
-    deleteArticle = (ev) => {
+    handleDeleteArticle = (ev) => {
         ev.preventDefault()
         ev.stopPropagation()
-        console.log(`deleting article ${this.props.article.id}`)
+        deleteArticle(this.props.article.id)
     }
 }
 
