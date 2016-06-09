@@ -4,13 +4,17 @@ import Article from './Article'
 import Chart from './Chart'
 import oneOpen from '../decorators/oneOpen'
 import Select from 'react-select'
+import DayPicker, { DateUtils } from 'react-day-picker'
 
+import 'react-day-picker/lib/style.css'
 import 'react-select/dist/react-select.css'
 
 class ArticleList extends Component {
 
     state = {
-        selected: null
+        selected: null,
+        from: null,
+        to: null
     }
 
     componentDidMount() {
@@ -20,6 +24,7 @@ class ArticleList extends Component {
 
     render() {
         const { articles, isOpen, openItem } = this.props
+        const { from, to } = this.state
 
         const articleItems = articles.map((article) => <li key={article.id}>
             <Article article = {article}
@@ -39,6 +44,11 @@ class ArticleList extends Component {
                     {articleItems}
                 </ul>
                 <Chart ref="chart" />
+                <DayPicker
+                    ref="daypicker"
+                    selectedDays={day => DateUtils.isDayInRange(day, {from, to})}
+                    onDayClick={this.setDateRange.bind(this)}
+                />
                 <Select
                     options = {options}
                     onChange = {this.handleChange}
@@ -47,6 +57,10 @@ class ArticleList extends Component {
                 />
             </div>
         )
+    }
+    setDateRange = (e, day) => {
+        const range = DateUtils.addDayToRange(day, this.state)
+        this.setState(range)
     }
 
     handleChange = (selected) => {
