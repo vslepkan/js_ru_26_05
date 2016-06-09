@@ -2,10 +2,8 @@ import BasicStore from './BasicStore'
 import { DELETE_ARTICLE } from '../constants'
 
 export default class ArticleStore extends BasicStore {
-    constructor(initialState = []) {
-        super()
-        this._items = {}
-        initialState.forEach(this._add)
+    constructor(...args) {
+        super(...args)
         this._subscribe((action) => {
             const { type, payload } = action
 
