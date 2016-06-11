@@ -1,23 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component as ReactComponent} from 'react'
 
-export default (CustomComponent) => class DecoratedComponent extends Component {
-  
-  state = {
-    openedArticle: null
-  };
+export default (Component) => class OneOpen extends ReactComponent {
+    state = {
+        openedItem: null
+    }
 
-  openedArticle = id => ev => {
-    this.setState({
-      openedArticle: this.state.openedArticle == id ? null : id
+    openItem = id => ev => this.setState({
+        openedItem: this.state.openedItem == id ? null : id
     })
-  };
 
-  isOpen = id => this.state.openedArticle == id;
-  
-  render() {
-    
-    return <CustomComponent {...this.props} isOpen = {this.isOpen} openedArticle = {this.openedArticle}/>
-    
-  }
-  
+    isOpen = id => this.state.openedItem == id
+
+    render() {
+        return <Component {...this.props} openItem = {this.openItem} isOpen = {this.isOpen} />
+    }
 }
