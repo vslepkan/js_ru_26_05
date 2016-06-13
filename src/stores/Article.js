@@ -13,6 +13,7 @@ export default class ArticleStore extends BasicStore {
                     break
 
                 case ADD_COMMENT:
+                    this._waitFor(['comments'])
                     const article = this.getById(payload.articleId)
                     article.comments = (article.comments || []).concat(payload.comment.id)
 
