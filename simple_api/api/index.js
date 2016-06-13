@@ -41,7 +41,7 @@ router.get('/comment', function (req, res, next) {
         var article = mocks.articles.find(function(article) {
             return article.id == aid
         })
-        return res.json((article.comments || []).filter(function(id) {
+        return res.json((article.comments || []).map(function(id) {
             return mocks.comments.find(function(comment) {
                 return comment.id == id
             })
