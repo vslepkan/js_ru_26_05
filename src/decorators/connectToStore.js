@@ -13,6 +13,16 @@ export default (storeNames, getStateFromStores) => {
             this.setState(getStateFromStores(stores, props))
         }
 
+        /**
+         Проблема с отсутствие лоадера была в плохом выборе мной lifecycle-хука в декораторе:
+         я подписывался на сторы в componentDidMount.
+         Но дальше сразу делал loadAllArticles в componentDidMount дочернего компонента.
+         LOAD_ALL_ARTICLES_START проходило по синхронному циклу.
+         А вы помните, что дочерний componentDidMount вызывается раньше чем родительский?
+         Таким образом у нас LOAD_ALL_ARTICLES_START обрабатывался еще до того,
+         как мы подписались на сторы. Лечиться заменой в декораторе componentDidMount на componentWillMount         *
+         */
+
         componentWillMount = () => {
             storeNames
                 .map(name => stores[name])
