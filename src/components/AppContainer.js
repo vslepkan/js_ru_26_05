@@ -10,7 +10,9 @@ class AppContainer extends Component {
     }
 
     render() {
-        return <ArticleList articles = {this.props.articles} />
+        const { loading, articles } = this.props
+        if (loading) return <h1>Loading...</h1>
+        return <ArticleList articles = {articles} />
     }
 }
 
@@ -18,7 +20,8 @@ class AppContainer extends Component {
 function getState(stores) {
     const { articles } = stores
     return {
-        articles: articles.getAll()
+        articles: articles.getAll(),
+        loading: articles.loading
     }
 }
 
