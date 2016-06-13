@@ -8,7 +8,7 @@ class NewCommentForm extends Component {
 
     state = {
         text: '',
-        name: ''
+        user: ''
 
     }
 
@@ -16,7 +16,7 @@ class NewCommentForm extends Component {
         return (
             <form onSubmit = {this.handleSubmit}>
                 new comment: <input value = {this.state.text} onChange = {this.handleChange('text')}/>
-                name: <input value = {this.state.name} onChange = {this.handleChange('name')} />
+                user: <input value = {this.state.user} onChange = {this.handleChange('user')} />
                 <input type="submit" value="add comment" />
             </form>
         )
@@ -33,7 +33,7 @@ class NewCommentForm extends Component {
         addComment(this.props.articleId, this.state)
         this.setState({
             text: '',
-            name: ''
+            user: ''
         })
     }
 
