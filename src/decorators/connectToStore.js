@@ -13,7 +13,7 @@ export default (storeNames, getStateFromStores) => {
             this.setState(getStateFromStores(stores, props))
         }
 
-        componentDidMount = () => {
+        componentWillMount = () => {
             storeNames
                 .map(name => stores[name])
                 .forEach(store =>
@@ -30,6 +30,7 @@ export default (storeNames, getStateFromStores) => {
         }
 
         handleStoresChanged = () => {
+            console.log('---', 123, 'changing')
             this.setState(getStateFromStores(stores, this.props));
         }
 
