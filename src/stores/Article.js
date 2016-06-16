@@ -1,5 +1,5 @@
 import BasicStore from './BasicStore'
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE_BY_ID, START, SUCCESS, FAIL} from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_COMMENTS_FOR_ARTICLE, LOAD_ARTICLE_BY_ID, START, SUCCESS, FAIL} from '../constants'
 
 export default class ArticleStore extends BasicStore {
     constructor(...args) {
@@ -38,6 +38,15 @@ export default class ArticleStore extends BasicStore {
 
                 case LOAD_ARTICLE_BY_ID + SUCCESS:
                     this._add(response)
+                    break
+
+                case LOAD_COMMENTS_FOR_ARTICLE + START:
+                    this.getById(payload.id).loadingComments = true
+                    break
+
+                case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
+                    this._waitFor(['comments'])
+                    this.getById(payload.id).loadingComments = false
                     break
 
                 default:

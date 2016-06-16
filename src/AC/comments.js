@@ -1,5 +1,6 @@
-import { ADD_COMMENT } from '../constants'
+import { ADD_COMMENT, LOAD_COMMENTS_FOR_ARTICLE } from '../constants'
 import AppDispatcher from '../dispatcher'
+import { asyncACFactory, loadCommentsForArticleCall } from './webUtils'
 
 export function addComment(articleId, comment) {
     const id = Date.now()
@@ -11,3 +12,5 @@ export function addComment(articleId, comment) {
         }
     })
 }
+
+export const loadCommentsForArticle = asyncACFactory(loadCommentsForArticleCall, LOAD_COMMENTS_FOR_ARTICLE)
