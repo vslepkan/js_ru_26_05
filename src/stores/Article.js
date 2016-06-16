@@ -1,9 +1,12 @@
 import BasicStore from './BasicStore'
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_COMMENTS_FOR_ARTICLE, LOAD_ARTICLE_BY_ID, START, SUCCESS, FAIL} from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT, CHANGE_FILTER, LOAD_ALL_ARTICLES,
+    LOAD_COMMENTS_FOR_ARTICLE, LOAD_ARTICLE_BY_ID, START, SUCCESS, FAIL} from '../constants'
+import { DateUtils } from 'react-day-picker'
 
 export default class ArticleStore extends BasicStore {
     constructor(...args) {
         super(...args)
+        this._filters = {}
         this._subscribe((action) => {
             const { type, payload, response, error } = action
 
@@ -49,11 +52,27 @@ export default class ArticleStore extends BasicStore {
                     this.getById(payload.id).loadingComments = false
                     break
 
+                case CHANGE_FILTER:
+                    this._filters[payload.filter] = payload.value
+                    break
+
                 default:
                     return
             }
 
             this._emitChange()
         })
+    }
+
+    getFilters() {
+        return this._filters
+    }
+
+    getFiltered() {
+        const { date : { from, to } = {}, selected = []} = this.getFilters()
+        return this.getAll()
+            .filter((article) => !selected.length || selected.includes(article.id))
+            .filter((article) => !(from || to) || DateUtils.isDayInRange(new Date(article.date), { from, to }))
+
     }
 }
