@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import Article from './Article'
 import Chart from './Chart'
-import Filters from './Filters'
+//import Filters from './Filters'
 import oneOpen from '../decorators/oneOpen'
 
 class ArticleList extends Component {
@@ -23,7 +23,7 @@ class ArticleList extends Component {
                     {articleItems}
                 </ul>
                 <Chart ref="chart" />
-                <Filters />
+                {/*<Filters />*/}
             </div>
         )
     }
