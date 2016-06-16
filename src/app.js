@@ -2,10 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import AppContainer from './containers/AppContainer'
 import store from './store'
-import { increment } from './AC/counter'
 
-//render(<AppContainer count = {store.getState()} />, document.getElementById('container'))
+render(<AppContainer store = {store} />, document.getElementById('container'))
 
+/*
 function wrappedIncrement(...args) {
     store.dispatch(increment(...args))
 }
@@ -17,3 +17,4 @@ function renderComponent() {
 renderComponent()
 
 store.subscribe(renderComponent)
+*/
