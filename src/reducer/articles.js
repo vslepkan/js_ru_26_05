@@ -7,7 +7,7 @@ export default (articles = normalizedArticles, action) => {
     switch (type) {
         case DELETE_ARTICLE: return articles.filter((article) => article.id != payload.id)
         case ADD_COMMENT: return articles.map(article => article.id != payload.articleId ? article :
-            {...article, comments: article.comments.concat(payload.comment.id)}
+            {...article, comments: (article.comments || []).concat(payload.comment.id)}
         )
     }
 
