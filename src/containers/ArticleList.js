@@ -14,6 +14,8 @@ class ArticleListContainer extends Component {
     }
 
     render() {
+        const { articles, loading } = this.props
+        if (loading) return <h3>Loading...</h3>
         return (
             <ArticleList articles = {this.props.articles} />
         )
@@ -21,5 +23,7 @@ class ArticleListContainer extends Component {
 }
 
 export default connect(state => ({
-    articles: toArray(state.articles.toJS())
+    articles: toArray(state.articles.get('entities').toJS()),
+    loading: state.articles.get('loading'),
+    loaded: state.articles.get('loaded')
 }), { loadAllArticles })(ArticleListContainer)
