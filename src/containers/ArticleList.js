@@ -16,5 +16,5 @@ class ArticleListContainer extends Component {
 }
 
 export default connect(state => ({
-    articles: toArray(state.articles)
+    articles: toArray(state.articles.toJS())
 }))(ArticleListContainer)
