@@ -17,6 +17,11 @@ class CommentList extends Component {
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     };
+    //example
+    static contextTypes = {
+        store: PropTypes.object.isRequired
+    }
+
     render() {
         return (
             <div>
