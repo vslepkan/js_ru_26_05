@@ -23,7 +23,7 @@ class ArticleListContainer extends Component {
 }
 
 export default connect(state => ({
-    articles: toArray(state.articles.get('entities').toJS()),
+    articles: state.articles.get('entities').valueSeq(),
     loading: state.articles.get('loading'),
     loaded: state.articles.get('loaded')
 }), { loadAllArticles })(ArticleListContainer)

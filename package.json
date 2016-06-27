@@ -27,6 +27,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "concurrently": "^2.1.0",
     "css-loader": "^0.23.1",
+    "redux-logger": "^2.6.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"

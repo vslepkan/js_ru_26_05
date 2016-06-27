@@ -10,10 +10,10 @@ class ArticleList extends Component {
     render() {
         const { articles, isOpen, openItem } = this.props
 
-        const articleItems = articles.map((article) => <li key={article.id}>
+        const articleItems = articles.map((article) => <li key={article.get('id')}>
             <Article article = {article}
-                     isOpen = {isOpen(article.id)}
-                openArticle = {openItem(article.id)}
+                     isOpen = {isOpen(article.get('id'))}
+                openArticle = {openItem(article.get('id'))}
             />
         </li>)
 
@@ -31,7 +31,7 @@ class ArticleList extends Component {
 }
 
 ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired,
+    articles: PropTypes.object.isRequired,
 
     isOpen: PropTypes.func.isRequired,
     openItem: PropTypes.func.isRequired
