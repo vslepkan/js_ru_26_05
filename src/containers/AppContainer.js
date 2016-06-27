@@ -1,12 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
-import Counter from './Counter'
-import ArticleList from './ArticleList'
+import store from '../store'
 
 class AppContainer extends Component {
-    static propTypes = {
-        store: PropTypes.object
-    };
     state = {
         user: ''
     }
@@ -22,13 +18,12 @@ class AppContainer extends Component {
 
     render() {
         return (
-            <Provider store = {this.props.store}>
+            <Provider store = {store}>
                 <div>
                     <form onSubmit = {this.changeUser}>
                         username: <input value={this.state.user} onChange={this.handleChange}/>
                     </form>
-                    <Counter />
-                    <ArticleList />
+                    {this.props.children}
                 </div>
             </Provider>
         )
