@@ -17,7 +17,10 @@ class ArticleListContainer extends Component {
         const { articles, loading } = this.props
         if (loading) return <h3>Loading...</h3>
         return (
-            <ArticleList articles = {this.props.articles} />
+            <div>
+                <ArticleList articles = {this.props.articles} />
+                {this.props.children}
+            </div>
         )
     }
 }
