@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Comment from './Comment'
+import Comment from './../components/Comment'
 import toggleOpen from '../decorators/toggleOpen'
-import NewCommentForm from './NewCommentForm'
+import NewCommentForm from './../components/NewCommentForm'
 import { loadCommentsForArticle } from '../AC/comments'
 import { getRelation } from '../store/utils'
 
@@ -53,8 +53,7 @@ class CommentList extends Component {
     }
 
     getList() {
-        const { article, isOpen } = this.props
-        const comments = getRelation(article, 'comments')
+        const { article, isOpen, comments } = this.props
         if (!isOpen) return null
         if (!article.get('loadedComments')) return <h3>Loading...</h3>
 
@@ -68,4 +67,6 @@ class CommentList extends Component {
     }
 }
 
-export default connect(null, { loadCommentsForArticle })(toggleOpen(CommentList))
+export default connect((state, props) => ({
+    comments: getRelation(state, props.article, 'comments')
+}), { loadCommentsForArticle })(toggleOpen(CommentList))

@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import {connect } from 'react-redux'
-import CommentList from './CommentList'
+import CommentList from './../containers/CommentList'
 import { deleteArticle } from '../AC/articles'
 
 class Article extends Component {
