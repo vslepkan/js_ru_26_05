@@ -4,7 +4,7 @@ import Article from '../components/Article'
 
 class ArticleContainer extends Component {
     static propTypes = {
-
+        id: PropTypes.string
     };
 
     render() {
@@ -14,7 +14,7 @@ class ArticleContainer extends Component {
 }
 
 export default connect((state, props) => {
-    const { params: { id } } = props
+    const { id } = props
     return {
         article: state.articles.getIn(['entities', id])
     }

@@ -12,7 +12,10 @@ class ArticleList extends Component {
         const { articles, isOpen, openItem } = this.props
 
         const articleItems = articles.map((article) => <li key={article.get('id')}>
-            <Link to={`/articles/${article.get('id')}`}>{article.get('title')}</Link>
+            <Link to={`/articles/${article.get('id')}`}
+                  activeClassName = "active"
+                  activeStyle = {{color: 'red'}}
+            >{article.get('title')}</Link>
         </li>)
 
         return (
