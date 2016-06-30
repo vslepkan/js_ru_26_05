@@ -8,6 +8,10 @@ import oneOpen from '../decorators/oneOpen'
 
 class ArticleList extends Component {
 
+    static contextTypes = {
+        router: PropTypes.object
+    }
+
     render() {
         const { articles, isOpen, openItem } = this.props
 
@@ -23,10 +27,19 @@ class ArticleList extends Component {
                 <ul>
                     {articleItems}
                 </ul>
+                <div onClick = {this.redirectToRandomArticle}>
+                    Random article
+                </div>
                 <Chart ref="chart" />
                 {/*<Filters />*/}
             </div>
         )
+    }
+
+    redirectToRandomArticle = () => {
+        const { articles } = this.props
+        const id = articles.getIn([Math.floor(Math.random() * articles.size), 'id'])
+        this.context.router.push(`/articles/${id}`)
     }
 
 }
