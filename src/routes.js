@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Route, IndexRoute, Redirect, IndexRedirect, browserHistory, hashHistory } from 'react-router'
+import history from './history'
 import Root from './containers/AppContainer'
 import ArticlePage from './RouteHandlers/ArticlePage'
 
@@ -12,7 +13,7 @@ import NotFoundPage from './components/NotFoundPage'
 import SelectArticle from './components/SelectArticle'
 
 export default (
-    <Router history = {browserHistory}>
+    <Router history = {history}>
         <Redirect from = "/" to = "/articles" />
         {/*<Redirect from = "/comments" to="/comments/1" />*/}
         <Route path = "/" component = {Root}>
